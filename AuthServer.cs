@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TwitchyThings;
 
@@ -11,9 +12,9 @@ public static class AuthServer
         var builder = WebApplication.CreateBuilder();
         var app = builder.Build();
 
-        app.MapGet("/", () =>
+        app.MapGet("/", ([FromQuery(Name="code")] string code) =>
         {
-            return "Hello world!";
+            return $"Hello your code was {code}!";
         });
 
         return app.RunAsync("https://localhost:3000");
