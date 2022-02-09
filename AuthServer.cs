@@ -12,7 +12,7 @@ public static class AuthServer
         var builder = WebApplication.CreateBuilder();
         var app = builder.Build();
 
-        app.MapGet("/", ([FromQuery(Name="code")] string code) =>
+        app.MapGet("/", ([FromQuery(Name="code")] string? code) =>
         {
             return $"Hello your code was {code}!";
         });
